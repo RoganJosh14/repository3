@@ -40,9 +40,8 @@ public class AuthorizationServer extends AuthorizationImplBase {
 		public void login(LoginRequest request, StreamObserver<LoginResponse> responseObserver) {
 			// TODO Auto-generated method stub
 			//super.login(request, responseObserver);
-			System.out.println("Recieving Login Details");
-			
-			String username = new String(request.getVal1());
+			System.out.println("Recieving Login Details");	
+			String username = request.getVal1();
 			String tenant1 = "Joshua";
 			//String tenant2 = "Rohit";
 			//String tenant3 = "James";
@@ -50,22 +49,17 @@ public class AuthorizationServer extends AuthorizationImplBase {
 			//String tenant5 = "Mary";
 			String access = "Entry Success!";
 			String deny = "Denied Entry!";
-			 if(request.getVal1() == tenant1) {
-				username = access;
-				//name = tenant2;
-				//name = tenant3;
-				//name = tenant4;
-				//name = tenant5;
-			 
-			 }else if(request.getVal1() != tenant1){
-				 username = deny ;			 
-			 }
-			
+			 if(username == tenant1) {
+				 System.out.println("Welcome " + access);
+			 }else if(username != tenant1){
+				 System.out.println("Sorry " + deny);
+	
 			LoginResponse reply = LoginResponse.newBuilder().setVal2(username).build();	
-			
+			 
 			responseObserver.onNext(reply);
 			
 			responseObserver.onCompleted();
+		}
 		}
 
 		@Override
