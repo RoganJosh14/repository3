@@ -14,14 +14,14 @@ package Access;
 service Authorization {
 
 // rpc method for unary calls
-  rpc Login(LoginRequest) returns (LoginResponse) {}
+  	rpc Login(LoginRequest) returns (LoginResponse) {}
 
 // rpc method that does not return any response
 
-rpc empty(Message) returns (Empty) {}
+	rpc empty(Message) returns (Empty) {}
 
 
-rpc FloorUnitSelection(FloorUnitSelectionRequest) returns (FloorUnitSelectionResponse){}
+	rpc FloorUnitSelection(FloorUnitSelectionRequest) returns (FloorUnitSelectionResponse){}
 }
 
 // define each variable in rpc method separately

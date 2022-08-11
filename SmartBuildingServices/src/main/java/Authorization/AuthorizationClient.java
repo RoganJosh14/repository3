@@ -53,7 +53,7 @@ public class AuthorizationClient {
 		
 		public static void login() {
 			// First creating a request message. Here, the message contains a string in setVal
-			LoginRequest req = LoginRequest.newBuilder().setVal1("Joshua").build();
+			LoginRequest req = LoginRequest.newBuilder().setVal1("Joshua1").build();
 			//  Calling a remote RPC method using blocking stub defined in main method. req is the message we want to pass.
 			LoginResponse response = blockingStub.login(req);
 
