@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+// generate separate or multiple java file for each generated class.
+option java_multiple_files = true;
+// Package inside the src/main/java where generated classes will reside.
+option java_package = "Authorization";
+// Class name of the wrapper class which represent this file.
+option java_outer_classname = "AServiceImpl";
+
+// package name to avoid name collisions
+package Access;
+
+// Interface exported by the server.
+service Authorization {
+
+// rpc method for unary calls
+  rpc Login(LoginRequest) returns (LoginResponse) {}
+
+// rpc method that does not return any response
+
+rpc empty(Message) returns (Empty) {}
+
+
+rpc FloorUnitSelection(FloorUnitSelectionRequest) returns (FloorUnitSelectionResponse){}
+}
+
+// define each variable in rpc method separately
+message LoginRequest {
+  string val1 = 1;
+}
+
+message LoginResponse {
+  string val2 = 1;
+}
+
+// Enum is a complex datatype that may contain other variables
+message Message {
+	enum Enum {
+        UNKNOWN = 0;
+        LOW = 1;
+        HIGH = 2;
+    }
+
+    Enum detail = 1;
+}
+
+message Empty{
+
+}
+
+message FloorUnitSelectionRequest {
+  string val3 = 1;
+}
+
+message FloorUnitSelectionResponse {
+  string val4 = 1;
+}
+
+

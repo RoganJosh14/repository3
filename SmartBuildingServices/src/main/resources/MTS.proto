@@ -1,0 +1,48 @@
+syntax = "proto3";
+// generate separate or multiple java file for each generated class.
+option java_multiple_files = true;
+// Package inside the src/main/java where generated classes will reside.
+option java_package = "MTS";
+// Class name of the wrapper class which represent this file.
+option java_outer_classname = "MTSServiceImpl";
+
+// package name to avoid name collisions
+package MotionTemperatureSensor;
+
+// Interface exported by the server.
+service MotionTemperatureSensor {
+
+
+rpc LightActivation(LightActivationRequest) returns (LightActivationResponse){}
+
+rpc TempRegulator(stream TempRegulatorRequest) returns (TempRegulatorResponse);
+}
+
+// define each variable in rpc method separately
+message LightActivationRequest {
+  string val1 = 1;
+}
+
+message LightActivationResponse {
+  string val2 = 1;
+}
+
+// Enum is a complex datatype that may contain other variables
+message Message {
+	enum Enum {
+        UNKNOWN = 0;
+        LOW = 1;
+        HIGH = 2;
+    }
+
+    Enum detail = 1;
+}
+
+message TempRegulatorResponse {
+  int32 celcius = 1;
+}
+
+
+message TempRegulatorRequest {
+  string val = 1;
+}

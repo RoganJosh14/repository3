@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+// Package inside the src/main/java where generated classes will reside.
+option java_package = "MS";
+// Class name of the wrapper class which represent this file.
+option java_outer_classname = "MSServiceImpl";
+
+// package name to avoid name collisions
+package MonitoringSystem;
+
+// Interface exported by the server.
+service MonitoringSystem {
+
+// rpc method for bidirectional streaming calls
+  rpc LiveDashboard(stream LiveDashboardRequest) returns (stream LiveDashboardResponse) {}
+
+  rpc EmergencyServices(CallRequest) returns (stream CallResponse);
+
+
+}
+
+// define each variable in rpc method separately
+
+message LiveDashboardRequest {
+  string val1 = 1;
+  int32 temp1 = 2;
+  string occupant1 = 3;
+}
+
+message LiveDashboardResponse {
+  string val2 = 1;
+  int32 temp2 = 2;
+  string occupant2 = 3;
+}
+
+message CallRequest {
+  string val3 = 1;
+  string val4 = 2;
+  string val5 = 3;
+}
+
+message CallResponse {
+  string val6 = 1;
+  string val7 = 2;
+  string val8 = 3;
+}
+
+
