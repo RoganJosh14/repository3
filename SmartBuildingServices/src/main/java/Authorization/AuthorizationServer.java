@@ -49,17 +49,17 @@ public class AuthorizationServer extends AuthorizationImplBase {
 			//String tenant5 = "Mary";
 			String access = "Entry Success!";
 			String deny = "Denied Entry!";
-			 if(username == tenant1) {
+			 if(username.equals(tenant1)) {
 				 System.out.println("Welcome " + access);
 			 }else if(username != tenant1){
 				 System.out.println("Sorry " + deny);
+			 }
 	
 			LoginResponse reply = LoginResponse.newBuilder().setVal2(username).build();	
 			 
 			responseObserver.onNext(reply);
 			
 			responseObserver.onCompleted();
-		}
 		}
 
 		@Override

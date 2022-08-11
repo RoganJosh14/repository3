@@ -58,6 +58,7 @@ public class AuthorizationClient {
 			LoginResponse response = blockingStub.login(req);
 
 			//response contains the output from the server side. Here, we are printing the value contained by response. 
+			//System.out.println(response.getVal2());
 			System.out.println(response.getVal2());
 		}
 		
