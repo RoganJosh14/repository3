@@ -34,7 +34,7 @@ public class AuthorizationClient {
 		public static void main(String[] args) throws Exception {
 		// First a channel is being created to the server from client. Here, we provide the server name (localhost) and port (50055).
 			// As it is a local demo of GRPC, we can have non-secured channel (usePlaintext).
-			ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50065).usePlaintext().build();
+			ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50051).usePlaintext().build();
 
 			//stubs -- generate from proto
 			blockingStub = AuthorizationGrpc.newBlockingStub(channel);
@@ -53,16 +53,22 @@ public class AuthorizationClient {
 		
 		public static void login() {
 			// First creating a request message. Here, the message contains a string in setVal
-			LoginRequest req = LoginRequest.newBuilder().setVal1("Joshua1").build();
+			LoginRequest req = LoginRequest.newBuilder().setVal1("Joshua").build();
 			//  Calling a remote RPC method using blocking stub defined in main method. req is the message we want to pass.
 			LoginResponse response = blockingStub.login(req);
 
 			//response contains the output from the server side. Here, we are printing the value contained by response. 
 			//System.out.println(response.getVal2());
 			System.out.println(response.getVal2());
+			System.out.println("***************************************************");
+			System.out.println("***************************************************");
+			
 		}
 		
 		public static void floorUnitSelection () {
+			
+			System.out.println("***************************************************");
+			System.out.println("***************************************************");
 			// First creating a request message. Here, the message contains a string in setVal
 			FloorUnitSelectionRequest req = FloorUnitSelectionRequest.newBuilder().setVal3("one").build();
 			//  Calling a remote RPC method using blocking stub defined in main method. req is the message we want to pass.

@@ -26,7 +26,7 @@ public class MTSClient {
 		public static void main(String[] args) throws Exception {
 		// First a channel is being created to the server from client. Here, we provide the server name (localhost) and port (50055).
 			// As it is a local demo of GRPC, we can have non-secured channel (usePlaintext).
-			ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50075).usePlaintext().build();
+			ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50051).usePlaintext().build();
 
 			//stubs -- generate from proto
 			blockingStub = MotionTemperatureSensorGrpc.newBlockingStub(channel);
@@ -42,9 +42,14 @@ public class MTSClient {
 			channel.shutdown();
 
 		}
-
+		
+		//Unary Streaming 
 		
 		public static void LightActivation() {
+			
+			System.out.println("***************************************************");
+			
+			System.out.println("***************************************************");
 			// First creating a request message. Here, the message contains a string in setVal
 			LightActivationRequest req = LightActivationRequest.newBuilder().setVal1("LightOff").build();
 			//  Calling a remote RPC method using blocking stub defined in main method. req is the message we want to pass.
@@ -54,8 +59,14 @@ public class MTSClient {
 			System.out.println(response.getVal2());
 			
 		}
+		
+		
+		//Client Streaming
 
 		public static void TempRegulator() {
+			
+			System.out.println("***************************************************");
+			System.out.println("***************************************************");
 
 			// Handling the stream for client using onNext (logic for handling each message in stream), onError, onCompleted (logic will be executed after the completion of stream)
 			StreamObserver<TempRegulatorResponse> responseObserver = new StreamObserver<TempRegulatorResponse>() {
@@ -85,9 +96,9 @@ public class MTSClient {
 			try {
 
 				requestObserver.onNext(TempRegulatorRequest.newBuilder().setVal("18").build());
-				requestObserver.onNext(TempRegulatorRequest.newBuilder().setVal("18").build());
-				requestObserver.onNext(TempRegulatorRequest.newBuilder().setVal("18").build());
-				requestObserver.onNext(TempRegulatorRequest.newBuilder().setVal("18").build());
+				requestObserver.onNext(TempRegulatorRequest.newBuilder().setVal("21").build());
+				requestObserver.onNext(TempRegulatorRequest.newBuilder().setVal("12").build());
+				requestObserver.onNext(TempRegulatorRequest.newBuilder().setVal("16").build());
 
 				System.out.println("SENDING INFORMATION");
 

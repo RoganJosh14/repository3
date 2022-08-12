@@ -37,7 +37,7 @@ public class MSClient {
 		public static void main(String[] args) throws Exception {
 			// First a channel is being created to the server from client. Here, we provide the server name (localhost) and port (50058).
 			// As it is a local demo of GRPC, we can have non-secured channel (usePlaintext).
-			ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50059).usePlaintext().build();
+			ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50051).usePlaintext().build();
 
 			//stubs -- generate from proto
 			blockingStub = MonitoringSystemGrpc.newBlockingStub(channel);
@@ -51,6 +51,9 @@ public class MSClient {
 			channel.shutdown();
 
 		}
+		
+		// bi-directional streaming 
+		
 		public static void LiveDashboard() {
 
 			// Handling the server stream for client using onNext (logic for handling each message in stream), onError, onCompleted (logic will be executed after the completion of stream)
@@ -62,11 +65,14 @@ public class MSClient {
 				public void onNext(LiveDashboardResponse value) {
 				
 					System.out.println("Live feed: " + value.getVal2() + value.getTemp2() + value.getOccupant2());
+					
 				}
 
 				@Override
 				public void onError(Throwable t) {
 					// TODO Auto-generated method stub
+				
+					
 
 				}
 
@@ -105,10 +111,15 @@ public class MSClient {
 				e.printStackTrace();
 			}
 		}
+		
+		
+		// Server Streaming 
 
 			public static void EmergencyServices() {
+				
+				System.out.println("***************************************************");
 				// First creating a request message. Here, the message contains a string in setVal
-				CallRequest request = CallRequest.newBuilder().setVal3("message 1 - introduction").build();
+				CallRequest request = CallRequest.newBuilder().setVal3("999 ( POLICE )").build();
 
 				// as this call is blocking. The client will not proceed until all the messages in stream has been received. 
 				try {
