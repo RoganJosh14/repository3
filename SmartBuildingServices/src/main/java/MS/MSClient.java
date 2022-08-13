@@ -95,7 +95,7 @@ public class MSClient {
 				requestObserver.onNext(LiveDashboardRequest.newBuilder().setTemp1(12).build());
 				requestObserver.onNext(LiveDashboardRequest.newBuilder().setOccupant1("3 People").build());
 
-				System.out.println("SENDING EMSSAGES");
+				System.out.println("SENDING INFORMATION");
 
 				// Mark the end of requests
 				requestObserver.onCompleted();
@@ -112,12 +112,8 @@ public class MSClient {
 			}
 		}
 		
-		
-		// Server Streaming 
-
 			public static void EmergencyServices() {
 				
-				System.out.println("***************************************************");
 				// First creating a request message. Here, the message contains a string in setVal
 				CallRequest request = CallRequest.newBuilder().setVal3("999 ( POLICE )").build();
 

@@ -126,9 +126,7 @@ public class MSServer extends MonitoringSystemImplBase {
 		public StreamObserver<LiveDashboardRequest> liveDashboard(StreamObserver<LiveDashboardResponse> responseObserver) {
 			// TODO Auto-generated method stub
 			return new StreamObserver<LiveDashboardRequest>() {
-				
-				
-			
+					
 			@Override
 			public void onNext(LiveDashboardRequest request){
 				// In bidirectional stream, both server and  client would be sending the stream of messages.
@@ -140,10 +138,7 @@ public class MSServer extends MonitoringSystemImplBase {
 					 System.out.println("Light Status: " + request.getVal1());	
 					 System.out.println("Tempreature status: " + request.getTemp1());
 					 System.out.println("Occupants status: " + request.getOccupant1());
-					 
-					 
-					 
-					
+					 			
 		         // Preparing and sending the reply for the client. Here, response is build and with the value (input1.toString()) computed by above logic.
 		            LiveDashboardResponse reply = LiveDashboardResponse.newBuilder().setVal2(Light).setTemp2(Temp).setOccupant2(Persons).build();
 		      
@@ -160,22 +155,17 @@ public class MSServer extends MonitoringSystemImplBase {
 			@Override
 			public void onCompleted() {
 				 responseObserver.onCompleted();
-				 
-		 System.out.println("***************************************************");			
-			}
-			
+			}		
 			
 		};
 		}
-
-		
 		// Server Streaming
-		
 		@Override
+		
 		public void emergencyServices(CallRequest request, StreamObserver<CallResponse> responseObserver) {
 			// TODO Auto-generated method stub
 			//super.emergencyServices(request, responseObserver);
-			System.out.println("***************************************************");
+		
 			 System.out.println("Receiving Information");
 			 
 				//Retrieve the value from the request of the client and convert it to array
@@ -202,5 +192,6 @@ public class MSServer extends MonitoringSystemImplBase {
 				responseObserver.onCompleted();
 }
 }
+
 
 				
