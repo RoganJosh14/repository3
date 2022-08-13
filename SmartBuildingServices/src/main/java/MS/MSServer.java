@@ -159,9 +159,9 @@ public class MSServer extends MonitoringSystemImplBase {
 			
 		};
 		}
+		
 		// Server Streaming
 		@Override
-		
 		public void emergencyServices(CallRequest request, StreamObserver<CallResponse> responseObserver) {
 			// TODO Auto-generated method stub
 			//super.emergencyServices(request, responseObserver);
