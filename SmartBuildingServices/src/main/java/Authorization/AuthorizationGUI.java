@@ -41,7 +41,7 @@ public class AuthorizationGUI {
 		private static AuthorizationBlockingStub blockingStub;
 		private static AuthorizationStub asyncStub;
 
-		private ServiceInfo mathServiceInfo;
+		private ServiceInfo AuthorizationServiceInfo;
 		
 		
 		private JFrame frame;
@@ -68,11 +68,11 @@ public class AuthorizationGUI {
 		 */
 		public AuthorizationGUI() {
 			
-			String math_service_type = "_._tcp.local.";
+			String math_service_type = "_login._tcp.local.";
 			discoverMathService(math_service_type);
 			
-			String host = mathServiceInfo.getHostAddresses()[0];
-			int port = mathServiceInfo.getPort();
+			String host = AuthorizationServiceInfo.getHostAddresses()[0];
+			int port = AuthorizationServiceInfo.getPort();
 			
 			ManagedChannel channel = ManagedChannelBuilder
 					.forAddress(host, port)
@@ -104,16 +104,16 @@ public class AuthorizationGUI {
 					public void serviceResolved(ServiceEvent event) {
 						System.out.println("Math Service resolved: " + event.getInfo());
 
-						mathServiceInfo = event.getInfo();
+						AuthorizationServiceInfo = event.getInfo();
 
-						int port = mathServiceInfo.getPort();
+						int port = AuthorizationServiceInfo.getPort();
 						
 						System.out.println("resolving " + service_type + " with properties ...");
 						System.out.println("\t port: " + port);
 						System.out.println("\t type:"+ event.getType());
 						System.out.println("\t name: " + event.getName());
-						System.out.println("\t description/properties: " + mathServiceInfo.getNiceTextString());
-						System.out.println("\t host: " + mathServiceInfo.getHostAddresses()[0]);
+						System.out.println("\t description/properties: " + AuthorizationServiceInfo.getNiceTextString());
+						System.out.println("\t host: " + AuthorizationServiceInfo.getHostAddresses()[0]);
 					
 						
 					}
